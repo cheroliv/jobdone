@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+/toodoo.code-workspace
+/server/web_req.rest
