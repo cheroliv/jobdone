@@ -3,15 +3,35 @@ package toodoo.service
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import org.koin.java.KoinJavaComponent.get
+import toodoo.service.ConsoleRunSingleTest.TodoServiceGreetings.TodoServiceGreetingsInMemory
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 
 class ConsoleRunSingleTest {
+
+    interface TodoServiceGreetings : TodoService {
+        fun greetings(): String
+        class TodoServiceGreetingsInMemory : TodoServiceGreetings, TodoServiceInMemory() {
+            override fun greetings() = "Hello from ${this::class.java.simpleName}!"
+        }
+    }
+
     @Test
     fun run_main_as_test(): Unit =
         startKoin {
             modules(modules = module {
-                single<TodoService> { TodoServiceInMemory() }
+                single<TodoServiceGreetings> { TodoServiceGreetingsInMemory() }
             })
-        }.run { println(get<TodoService>(TodoService::class.java).greetings()) }
+        }.run {
+            get<TodoServiceGreetings>(TodoServiceGreetings::class.java).greetings().apply {
+                assertEquals(
+                    expected = "Hello from ${TodoServiceGreetingsInMemory::class.java.simpleName}!",
+                    actual = this
+                )
+                println(this)
+            }
+
+
+        }
 }

@@ -1,22 +1,40 @@
 package toodoo.service
 
+import toodoo.model.Organization
+import toodoo.model.Todo
+import toodoo.service.TodoServiceInMemory.InMemoryData.addOrganization
 import toodoo.service.TodoServiceInMemory.InMemoryData.addTodo
+import toodoo.service.TodoServiceInMemory.InMemoryData.getAllOrganizations
+import toodoo.service.TodoServiceInMemory.InMemoryData.getAllTodos
 
-class TodoServiceInMemory : TodoService {
+
+open class TodoServiceInMemory : TodoService {
     object InMemoryData {
         @JvmStatic
-        private val repo: MutableList<Any> = mutableListOf()
+        private val todos: MutableList<Todo> = mutableListOf()
 
         @JvmStatic
-        fun allTodos() = repo
+        fun getAllTodos() = todos
 
         @JvmStatic
-        fun addTodo(todos: List<Any>) {
-            repo.add(todos)
+        fun addTodo(todo: Todo) {
+            todos.add(todo)
+        }
+
+        @JvmStatic
+        private val organizations: MutableList<Organization> = mutableListOf()
+
+        @JvmStatic
+        fun getAllOrganizations() = organizations
+
+        @JvmStatic
+        fun addOrganization(organization: Organization) {
+            organizations.add(organization)
         }
     }
 
-    override fun greetings() = "Hello from ${this::class.java.simpleName}!"
-    override fun allTodos(): List<Any> = allTodos()
-    override fun saveTodo(todo: List<Any>) = addTodo(todo)
+    override fun allTodos(): List<Todo> = getAllTodos()
+    override fun saveTodo(todo: Todo) = addTodo(todo)
+    override fun allOrganizations(): List<Organization> = getAllOrganizations()
+    override fun saveOrganization(org: Organization) = addOrganization(org)
 }

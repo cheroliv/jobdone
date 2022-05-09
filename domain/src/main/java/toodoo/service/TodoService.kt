@@ -1,7 +1,12 @@
 package toodoo.service
 
+import toodoo.model.Organization
+import toodoo.model.Todo
+
 interface TodoService {
-    fun greetings():String
-    fun allTodos(): List<Any>
-    fun saveTodo(todo: List<Any>)
+
+    fun allTodos(): List<Todo>
+    fun saveTodo(todo: Todo)
+    fun allOrganizations(): List<Organization>
+    fun saveOrganization(org: Organization)
 }
