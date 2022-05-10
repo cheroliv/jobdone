@@ -15,3 +15,6 @@
 local.properties
 /toodoo.code-workspace
 /webflux/web_req.rest
+/toodoo_compose/.idea/libraries
+/toodoo_compose/.idea/modules.xml
+/toodoo_compose/.idea/workspace.xml
