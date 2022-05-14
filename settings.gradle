@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 rootProject.name = "toodoo"
 include ':domain'
 include ':app'
-include ':compose'
