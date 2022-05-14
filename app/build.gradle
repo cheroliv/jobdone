@@ -1,14 +1,14 @@
 plugins {
     id( 'com.android.application')
     id ('org.jetbrains.kotlin.android')
-    id("com.apollographql.apollo3") version("3.3.0")
     id ('kotlin-kapt')
     id ("androidx.navigation.safeargs")
 //    id ("com.github.triplet.play") version ("3.7.0-agp4.2")
+//    id("com.apollographql.apollo3") version("3.3.0")
 }
-apollo {
-    packageName.set("education.cccp.toodoo.mobile")
-}
+//apollo {
+//    packageName.set("education.cccp.toodoo.mobile")
+//}
 android {
     compileSdk 32
     defaultConfig {
@@ -48,7 +48,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     // apollo graphql
-    implementation("com.apollographql.apollo3:apollo-runtime:3.3.0")
+//    implementation("com.apollographql.apollo3:apollo-runtime:3.3.0")
     // Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
