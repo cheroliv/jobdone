@@ -13,5 +13,3 @@ dependencies {
 === espresso
 
 On commence dans une classs de test https://insert-koin.io/docs/reference/koin-test/testing/[koin]
-
-On commence dans une classs de test https://insert-koin.io/docs/reference/koin-test/testing/[koin]
