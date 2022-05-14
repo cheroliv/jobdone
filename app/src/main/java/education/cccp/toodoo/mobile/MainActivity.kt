@@ -1,10 +1,10 @@
-package education.cccp.mobile.toodoo
+package education.cccp.toodoo.mobile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import education.cccp.mobile.toodoo.R.id.container
 import education.cccp.mobile.toodoo.R.layout.main_activity
-import education.cccp.mobile.toodoo.ui.main.MainFragment
+import education.cccp.toodoo.mobile.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

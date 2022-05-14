@@ -1,4 +1,4 @@
-package education.cccp.mobile.toodoo.ui.main
+package education.cccp.toodoo.mobile.ui.main
 
 import androidx.lifecycle.ViewModel
 

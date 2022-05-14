@@ -1,4 +1,4 @@
-package education.cccp.mobile.toodoo
+package education.cccp.toodoo.mobile
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

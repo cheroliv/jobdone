@@ -1,4 +1,4 @@
-package education.cccp.mobile.toodoo
+package education.cccp.toodoo.mobile
 
 import org.junit.Test
 
