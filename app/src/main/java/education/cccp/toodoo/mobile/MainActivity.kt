@@ -8,11 +8,11 @@ import education.cccp.toodoo.mobile.ui.main.MainFragment
 
 
 class MainActivity : AppCompatActivity() {
+    //        education.cccp.data.datas
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(main_activity)
-//        datas
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(container, MainFragment.newInstance())
