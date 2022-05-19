@@ -1,0 +1,11 @@
+POST http://localhost:8080/api/authenticate
+accept: */* 
+content-type: application/json
+ { 
+ "username": "admin",
+ "password": "admin",
+ "rememberMe": true 
+ } 
+
+ ###
+
