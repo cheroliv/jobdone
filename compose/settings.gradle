@@ -4,6 +4,7 @@ pluginManagement {
         google()
         mavenCentral()
     }
+//    dependencies {implementation("androidx.compose.compiler:compiler:1.1.1")}
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -14,7 +15,7 @@ dependencyResolutionManagement {
         maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev") }
         maven { url = uri("https://jitpack.io") }
     }
+
 }
 rootProject.name = "toodoo"
-include ':domain'
 include ':app'
