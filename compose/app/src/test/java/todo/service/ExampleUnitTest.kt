@@ -1,4 +1,4 @@
-package todo.mobile
+package todo.service
 
 import org.junit.Test
 
