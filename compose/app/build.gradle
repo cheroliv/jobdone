@@ -65,11 +65,13 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+    // Needed for createComposeRule, but not createAndroidComposeRule:
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    debugImplementation("androidx.compose.ui:ui-test-manifest:$compose_version")
 
     //    implementation("com.github.cheroliv:playground:0.0.0")
     // apollo graphql
-//    implementation("com.apollographql.apollo3:apollo-runtime:3.3.0")
+    //    implementation("com.apollographql.apollo3:apollo-runtime:3.3.0")
     testImplementation ("org.mockito.kotlin:mockito-kotlin:4.0.0")
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation ("org.mockito.kotlin:mockito-kotlin:4.0.0")
@@ -96,13 +98,13 @@ dependencies {
     // coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version")
     // Koin for Kotlin apps
-//    implementation(dependencyNotation = "io.insert-koin:koin-core:${properties["koin_version"]}")
-//    testImplementation(dependencyNotation = "org.jetbrains.kotlin:kotlin-test")
-//    testImplementation(dependencyNotation = "org.jetbrains.kotlin:kotlin-test-junit")
+    //    implementation(dependencyNotation = "io.insert-koin:koin-core:${properties["koin_version"]}")
+    //    testImplementation(dependencyNotation = "org.jetbrains.kotlin:kotlin-test")
+    //    testImplementation(dependencyNotation = "org.jetbrains.kotlin:kotlin-test-junit")
     // Testing koin for Kotlin
-//    testImplementation (dependencyNotation = "io.insert-koin:koin-test:${properties["koin_version"]}")
-//    testRuntimeOnly(dependencyNotation = "io.insert-koin:koin-test:${properties["koin_version"]}")
+    //    testImplementation (dependencyNotation = "io.insert-koin:koin-test:${properties["koin_version"]}")
+    //    testRuntimeOnly(dependencyNotation = "io.insert-koin:koin-test:${properties["koin_version"]}")
     // Koin for JUnit 4
-//    testImplementation (dependencyNotation = "io.insert-koin:koin-test-junit4:${properties["koin_version"]}")
-//    testRuntimeOnly(dependencyNotation = "io.insert-koin:koin-test-junit4:${properties["koin_version"]}")
+    //    testImplementation (dependencyNotation = "io.insert-koin:koin-test-junit4:${properties["koin_version"]}")
+    //    testRuntimeOnly(dependencyNotation = "io.insert-koin:koin-test-junit4:${properties["koin_version"]}")
 }

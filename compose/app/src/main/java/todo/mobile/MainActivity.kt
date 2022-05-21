@@ -1,9 +1,11 @@
 package todo.mobile
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -22,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    Greeting("buddy")
                 }
             }
         }
@@ -30,14 +32,13 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+fun Greeting(name: String) = Text(text = "Hi, $name!")
+//@Composable
+//fun AddTodo() = Button(text = "add Todo")
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
-    TodoTheme {
-        Greeting("Android")
-    }
+fun DefaultPreview() = TodoTheme {
+    Greeting("buddy")
+//    AddTodo()
 }
