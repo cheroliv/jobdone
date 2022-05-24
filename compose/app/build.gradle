@@ -67,9 +67,7 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     // Needed for createComposeRule, but not createAndroidComposeRule:
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
-    debugImplementation("androidx.compose.ui:ui-test-manifest:$compose_version")
 
-    //    implementation("com.github.cheroliv:playground:0.0.0")
     // apollo graphql
     //    implementation("com.apollographql.apollo3:apollo-runtime:3.3.0")
     testImplementation ("org.mockito.kotlin:mockito-kotlin:4.0.0")
