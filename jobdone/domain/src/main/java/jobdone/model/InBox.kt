@@ -1,4 +1,4 @@
-package toodoo.model
+package jobdone.model
 
 class InBox(orgs:List<Organization>)
 

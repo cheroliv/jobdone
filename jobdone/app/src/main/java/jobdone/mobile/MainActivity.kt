@@ -1,10 +1,8 @@
-package education.cccp.toodoo.mobile
+package jobdone.mobile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import education.cccp.toodoo.mobile.R.id.container
-import education.cccp.toodoo.mobile.R.layout.main_activity
-import education.cccp.toodoo.mobile.ui.main.MainFragment
+import jobdone.mobile.ui.main.MainFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -12,10 +10,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(main_activity)
+        setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(container, MainFragment.newInstance())
+                .replace(R.id.container, MainFragment.newInstance())
                 .commitNow()
         }
     }

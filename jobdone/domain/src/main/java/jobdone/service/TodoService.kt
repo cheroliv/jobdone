@@ -1,7 +1,7 @@
-package toodoo.service
+package jobdone.service
 
-import toodoo.model.Organization
-import toodoo.model.Todo
+import jobdone.model.Organization
+import jobdone.model.Todo
 
 interface TodoService {
     fun allTodos(): List<Todo>

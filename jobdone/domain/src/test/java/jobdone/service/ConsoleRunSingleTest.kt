@@ -1,9 +1,9 @@
-package toodoo.service
+package jobdone.service
 
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import org.koin.java.KoinJavaComponent.get
-import toodoo.service.ConsoleRunSingleTest.TodoServiceGreetings.TodoServiceGreetingsInMemory
+import jobdone.service.ConsoleRunSingleTest.TodoServiceGreetings.TodoServiceGreetingsInMemory
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

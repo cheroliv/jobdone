@@ -1,11 +1,11 @@
-package toodoo.service
+package jobdone.service
 
-import toodoo.model.Organization
-import toodoo.model.Todo
-import toodoo.service.TodoServiceInMemory.InMemoryData.addOrganization
-import toodoo.service.TodoServiceInMemory.InMemoryData.addTodo
-import toodoo.service.TodoServiceInMemory.InMemoryData.getAllOrganizations
-import toodoo.service.TodoServiceInMemory.InMemoryData.getAllTodos
+import jobdone.model.Organization
+import jobdone.model.Todo
+import jobdone.service.TodoServiceInMemory.InMemoryData.addOrganization
+import jobdone.service.TodoServiceInMemory.InMemoryData.addTodo
+import jobdone.service.TodoServiceInMemory.InMemoryData.getAllOrganizations
+import jobdone.service.TodoServiceInMemory.InMemoryData.getAllTodos
 
 
 open class TodoServiceInMemory : TodoService {

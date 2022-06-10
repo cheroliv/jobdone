@@ -6,13 +6,13 @@ plugins {
 //    id ("com.github.triplet.play") version ("3.7.0-agp4.2")
 //    id("com.apollographql.apollo3") version("3.3.0")
 }
-//apollo { packageName.set("education.cccp.toodoo.mobile") }
+//apollo { packageName.set("education.cccp.jobdone.mobile") }
 android {
-    namespace 'education.cccp.toodoo.mobile'
+    namespace 'jobdone.mobile'
 
     compileSdk 32
     defaultConfig {
-        applicationId "education.cccp.toodoo.mobile"
+        applicationId "jobdone.mobile"
         minSdk 23
         targetSdk 32
         versionCode 1

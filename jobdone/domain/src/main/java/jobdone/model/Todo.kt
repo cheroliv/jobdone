@@ -1,3 +1,3 @@
-package toodoo.model
+package jobdone.model
 
 class Todo(@Suppress("UNUSED_PARAMETER") title:String)

@@ -1,4 +1,4 @@
-package toodoo.service
+package jobdone.service
 
 @Suppress("NonAsciiCharacters")
 class TodoServiceUnitTest
