@@ -19,7 +19,6 @@ dependencies {
     // Koin for JUnit 4
     testImplementation (dependencyNotation = "io.insert-koin:koin-test-junit4:${properties["koin_version"]}")
     testRuntimeOnly(dependencyNotation = "io.insert-koin:koin-test-junit4:${properties["koin_version"]}")
-
 }
 
 java {
