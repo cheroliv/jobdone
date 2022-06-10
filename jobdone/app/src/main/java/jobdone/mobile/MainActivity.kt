@@ -6,7 +6,6 @@ import jobdone.mobile.ui.main.MainFragment
 
 
 class MainActivity : AppCompatActivity() {
-    //        education.cccp.data.datas
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
