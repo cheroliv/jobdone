@@ -18,7 +18,7 @@ class ConsoleRunSingleTest {
     }
 
     @Test
-    fun run_main_as_test(): Unit =
+    fun main_test(): Unit =
         startKoin {
             modules(modules = module {
                 single<TodoServiceGreetings> { TodoServiceGreetingsInMemory() }
