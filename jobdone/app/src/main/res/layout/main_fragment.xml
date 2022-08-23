@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="toodoo.mobile.ui.main.MainFragment">
+    tools:context="jobdone.mobile.ui.main.MainFragment">
 
     <Button
         android:id="@+id/addTodoButton"
