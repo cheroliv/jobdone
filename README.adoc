@@ -1,8 +1,11 @@
-= JobDone
+= Jobdone a To-Do android application developed in Kotlin
 
 == TDD approche.
+
 === setting up mockito
+
 app/build.gradle
+
 [source,kotlin]
 ----
 dependencies {
