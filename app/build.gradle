@@ -16,7 +16,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.todoapp"
+        applicationId "com.cheroliv.jobdone"
         minSdkVersion 26
         targetSdkVersion 33
         versionCode 1
@@ -53,7 +53,7 @@ android {
             }
         }
     }
-    namespace "com.example.todoapp"
+    namespace "com.cheroliv.jobdone"
 }
 
 dependencies {

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="toDoData"
-            type="com.example.todoapp.data.models.ToDoData" />
+            type="com.cheroliv.jobdone.data.models.ToDoData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

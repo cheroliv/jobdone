@@ -6,14 +6,14 @@
     <data>
         <variable
             name="mSharedViewModel"
-            type="com.example.todoapp.fragments.SharedViewModel" />
+            type="com.cheroliv.jobdone.fragments.SharedViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/listLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.list.ListFragment">
+        tools:context="com.cheroliv.jobdone.fragments.list.ListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
