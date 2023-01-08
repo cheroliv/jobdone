@@ -2,7 +2,7 @@ package com.example.todoapp.data
 
 import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
+import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.todoapp.data.models.ToDoData
@@ -41,13 +41,14 @@ abstract class ToDoDatabase : RoomDatabase() {
         fun getDatabase(context: Context): ToDoDatabase =
             INSTANCE ?: synchronized(this) {
                 INSTANCE
-                    ?: buildDatabase(context).also { INSTANCE = it }
+                    ?: buildDatabase(context).apply { INSTANCE = this }
             }
 
         private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(
+            databaseBuilder(
                 context.applicationContext,
-                ToDoDatabase::class.java, "todo_database"
+                ToDoDatabase::class.java,
+                "todo_database"
             ).build()
     }
 
