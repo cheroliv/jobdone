@@ -14,11 +14,14 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Lifecycle.State.RESUMED
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
 import com.cheroliv.jobdone.R
-import com.cheroliv.jobdone.R.id.menu_search
+import com.cheroliv.jobdone.R.*
+import com.cheroliv.jobdone.R.id.*
 import com.cheroliv.jobdone.R.menu.list_fragment_menu
 import com.cheroliv.jobdone.data.models.ToDoData
 import com.cheroliv.jobdone.data.viewmodel.ToDoViewModel
@@ -79,12 +82,12 @@ class ListFragment : Fragment(), OnQueryTextListener {
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 when (menuItem.itemId) {
-                    R.id.menu_delete_all -> confirmRemoval()
-                    R.id.menu_priority_high ->
+                    menu_delete_all -> confirmRemoval()
+                    menu_priority_high ->
                         mToDoViewModel.sortByHighPriority.observe(viewLifecycleOwner) {
                             adapter.setData(it)
                         }
-                    R.id.menu_priority_low ->
+                    menu_priority_low ->
                         mToDoViewModel.sortByLowPriority.observe(viewLifecycleOwner) {
                             adapter.setData(it)
                         }
@@ -92,7 +95,7 @@ class ListFragment : Fragment(), OnQueryTextListener {
                 }
                 return true
             }
-        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+        }, viewLifecycleOwner, RESUMED)
 
     }
 
@@ -100,7 +103,7 @@ class ListFragment : Fragment(), OnQueryTextListener {
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
         recyclerView.layoutManager =
-            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            StaggeredGridLayoutManager(2, VERTICAL)
 
         // Swipe to Delete
         swipeToDelete(recyclerView)

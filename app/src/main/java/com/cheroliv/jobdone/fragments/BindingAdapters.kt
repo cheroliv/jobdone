@@ -17,16 +17,25 @@ import com.cheroliv.jobdone.data.models.ToDoData
 import com.cheroliv.jobdone.fragments.list.ListFragmentDirections.Companion.actionListFragmentToUpdateFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-private fun Priority.toInt(): Int = when (this) {
-    HIGH -> 0
-    MEDIUM -> 1
-    LOW -> 2
-}
+private val Priority.toInt: Int
+    get() = when (this) {
+        HIGH -> 0
+        MEDIUM -> 1
+        LOW -> 2
+    }
 
 private fun View.emptyDatabase(value: Boolean) = when (value) {
     true -> visibility = VISIBLE
     false -> visibility = INVISIBLE
 }
+
+private val Priority.colors
+    get() = when (this) {
+        HIGH -> red
+        MEDIUM -> yellow
+        LOW -> green
+    }
+
 
 class BindingAdapters {
 
@@ -49,20 +58,12 @@ class BindingAdapters {
         @BindingAdapter("android:parsePriorityToInt")
         @JvmStatic
         fun parsePriorityToInt(view: Spinner, priority: Priority) =
-            view.setSelection(priority.toInt())
+            view.setSelection(priority.toInt)
 
         @BindingAdapter("android:parsePriorityColor")
         @JvmStatic
         fun parsePriorityColor(cardView: CardView, priority: Priority) =
-            cardView.setCardBackgroundColor(
-                cardView.context.getColor(
-                    when (priority) {
-                        HIGH -> red
-                        MEDIUM -> yellow
-                        LOW -> green
-                    }
-                )
-            )
+            cardView.setCardBackgroundColor(cardView.context.getColor(priority.colors))
 
         @BindingAdapter("android:sendDataToUpdateFragment")
         @JvmStatic
