@@ -4,11 +4,11 @@
 //apply plugin: "androidx.navigation.safeargs.kotlin"
 //apply plugin: "kotlin-parcelize"
 plugins {
-    id('com.android.application')
-    id('kotlin-android')
-    id('kotlin-kapt')
-    id('androidx.navigation.safeargs.kotlin')
-    id('kotlin-parcelize')
+    id("com.android.application")
+    id("kotlin-android")
+    id("kotlin-kapt")
+    id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -84,5 +84,4 @@ dependencies {
     // Kotlin components
 //    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
 //    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
-
 }
