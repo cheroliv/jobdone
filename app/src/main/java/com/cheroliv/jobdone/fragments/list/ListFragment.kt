@@ -1,26 +1,22 @@
 package com.cheroliv.jobdone.fragments.list
 
 import android.R.id.home
-import android.app.AlertDialog
+import android.app.AlertDialog.Builder
 import android.os.Bundle
-import android.util.Log
 import android.util.Log.d
 import android.view.*
-import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
+import android.widget.Toast.makeText
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
-import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Lifecycle.State.RESUMED
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
-import com.cheroliv.jobdone.R
-import com.cheroliv.jobdone.R.*
 import com.cheroliv.jobdone.R.id.*
 import com.cheroliv.jobdone.R.menu.list_fragment_menu
 import com.cheroliv.jobdone.data.models.ToDoData
@@ -31,7 +27,8 @@ import com.cheroliv.jobdone.fragments.SharedViewModel
 import com.cheroliv.jobdone.fragments.list.adapter.ListAdapter
 import com.cheroliv.jobdone.utils.hideKeyboard
 import com.cheroliv.jobdone.utils.observeOnce
-import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.snackbar.Snackbar.LENGTH_LONG
+import com.google.android.material.snackbar.Snackbar.make
 
 class ListFragment : Fragment(), OnQueryTextListener {
 
@@ -80,21 +77,24 @@ class ListFragment : Fragment(), OnQueryTextListener {
                     }
                 })
 
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+            override fun onMenuItemSelected(menuItem: MenuItem) = true.apply {
                 when (menuItem.itemId) {
+
                     menu_delete_all -> confirmRemoval()
-                    menu_priority_high ->
-                        mToDoViewModel.sortByHighPriority.observe(viewLifecycleOwner) {
-                            adapter.setData(it)
-                        }
-                    menu_priority_low ->
-                        mToDoViewModel.sortByLowPriority.observe(viewLifecycleOwner) {
-                            adapter.setData(it)
-                        }
+
+                    menu_priority_high -> mToDoViewModel
+                        .sortByHighPriority
+                        .observe(viewLifecycleOwner) { adapter.setData(it) }
+
+                    menu_priority_low -> mToDoViewModel
+                        .sortByLowPriority
+                        .observe(viewLifecycleOwner) { adapter.setData(it) }
+
                     home -> requireActivity().onBackPressed()
+
                 }
-                return true
             }
+
         }, viewLifecycleOwner, RESUMED)
 
     }
@@ -110,75 +110,60 @@ class ListFragment : Fragment(), OnQueryTextListener {
     }
 
     private fun swipeToDelete(recyclerView: RecyclerView) {
-        val swipeToDeleteCallback = object : SwipeToDelete() {
+        ItemTouchHelper(object : SwipeToDelete() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val deletedItem = adapter.dataList[viewHolder.adapterPosition]
-                // Delete Item
-                mToDoViewModel.deleteItem(deletedItem)
-                adapter.notifyItemRemoved(viewHolder.adapterPosition)
-                // Restore Deleted Item
-                restoreDeletedData(viewHolder.itemView, deletedItem)
+                adapter.dataList[viewHolder.adapterPosition].run {
+                    // Delete Item
+                    mToDoViewModel.deleteItem(this)
+                    adapter.notifyItemRemoved(viewHolder.adapterPosition)
+                    // Restore Deleted Item
+                    restoreDeletedData(viewHolder.itemView, this)
+                }
             }
-        }
-        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
-        itemTouchHelper.attachToRecyclerView(recyclerView)
+        }).attachToRecyclerView(recyclerView)
     }
 
-    private fun restoreDeletedData(view: View, deletedItem: ToDoData) {
-        val snackBar = Snackbar.make(
-            view, "Deleted '${deletedItem.title}'",
-            Snackbar.LENGTH_LONG
-        )
-        snackBar.setAction("Undo") {
-            mToDoViewModel.insertData(deletedItem)
-        }
-        snackBar.show()
+    private fun restoreDeletedData(view: View, deletedItem: ToDoData) = make(
+        view,
+        "Deleted '${deletedItem.title}'",
+        LENGTH_LONG
+    ).setAction("Undo") { mToDoViewModel.insertData(deletedItem) }.show()
+
+
+    override fun onQueryTextSubmit(query: String?) = true.apply {
+        if (query != null) searchThroughDatabase(query)
     }
 
-    override fun onQueryTextSubmit(query: String?): Boolean {
-        if (query != null) {
-            searchThroughDatabase(query)
-        }
-        return true
+    override fun onQueryTextChange(query: String?) = true.apply {
+        if (query != null) searchThroughDatabase(query)
     }
 
-    override fun onQueryTextChange(query: String?): Boolean {
-        if (query != null) {
-            searchThroughDatabase(query)
-        }
-        return true
-    }
 
-    private fun searchThroughDatabase(query: String) {
-        val searchQuery = "%$query%"
-
-        mToDoViewModel.searchDatabase(searchQuery).observeOnce(viewLifecycleOwner) { list ->
-            list?.run {
-                d("ListFragment", "searchThroughDatabase")
-                adapter.setData(this)
-            }
+    private fun searchThroughDatabase(query: String) = mToDoViewModel
+        .searchDatabase("%$query%")
+        .observeOnce(viewLifecycleOwner) { list ->
+            d("ListFragment", "searchThroughDatabase")
+            adapter.setData(list)
         }
-    }
 
     // Show AlertDialog to Confirm Removal of All Items from Database Table
     private fun confirmRemoval() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes") { _, _ ->
-            mToDoViewModel.deleteAll()
-            Toast.makeText(
-                requireContext(),
-                "Successfully Removed Everything!",
-                Toast.LENGTH_SHORT
-            ).show()
+        Builder(requireContext()).run {
+            setPositiveButton("Yes") { _, _ ->
+                mToDoViewModel.deleteAll()
+                makeText(
+                    requireContext(),
+                    "Successfully Removed Everything!",
+                    LENGTH_SHORT
+                ).show()
+            }
+            setNegativeButton("No") { _, _ -> }
+            setTitle("Delete everything?")
+            setMessage("Are you sure you want to remove everything?")
+            create().show()
         }
-        builder.setNegativeButton("No") { _, _ -> }
-        builder.setTitle("Delete everything?")
-        builder.setMessage("Are you sure you want to remove everything?")
-        builder.create().show()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+    override fun onDestroyView() = super.onDestroyView().run { _binding = null }
+
 }
