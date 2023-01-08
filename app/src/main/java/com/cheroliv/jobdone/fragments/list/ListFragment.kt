@@ -99,14 +99,11 @@ class ListFragment : Fragment(), OnQueryTextListener {
 
     }
 
-    private fun setupRecyclerview() {
-        val recyclerView = binding.recyclerView
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager =
-            StaggeredGridLayoutManager(2, VERTICAL)
-
+    private fun setupRecyclerview() = binding.recyclerView.run {
+        adapter = this@ListFragment.adapter
+        layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
         // Swipe to Delete
-        swipeToDelete(recyclerView)
+        swipeToDelete(this)
     }
 
     private fun swipeToDelete(recyclerView: RecyclerView) {
