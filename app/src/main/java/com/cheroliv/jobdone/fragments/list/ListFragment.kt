@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.cheroliv.jobdone.R
+import com.cheroliv.jobdone.R.id.menu_search
+import com.cheroliv.jobdone.R.menu.list_fragment_menu
 import com.cheroliv.jobdone.data.models.ToDoData
 import com.cheroliv.jobdone.data.viewmodel.ToDoViewModel
 import com.cheroliv.jobdone.databinding.FragmentListBinding
@@ -65,16 +67,15 @@ class ListFragment : Fragment(), OnQueryTextListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val menuHost: MenuHost = requireActivity()
-        menuHost.addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.list_fragment_menu, menu)
+        requireActivity().addMenuProvider(object : MenuProvider {
 
-                val search = menu.findItem(R.id.menu_search)
-                val searchView = search.actionView as? SearchView
-                searchView?.isSubmitButtonEnabled = true
-                searchView?.setOnQueryTextListener(this@ListFragment)
-            }
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) =
+                menuInflater.inflate(list_fragment_menu, menu.apply {
+                    (menu.findItem(menu_search).actionView as? SearchView)?.apply {
+                        isSubmitButtonEnabled = true
+                        setOnQueryTextListener(this@ListFragment)
+                    }
+                })
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 when (menuItem.itemId) {

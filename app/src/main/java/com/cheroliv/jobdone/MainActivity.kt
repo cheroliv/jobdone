@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 
+    override fun onSupportNavigateUp() = navController.navigateUp() || super.onSupportNavigateUp()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activity_main)
@@ -20,5 +22,4 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController)
     }
 
-    override fun onSupportNavigateUp() = navController.navigateUp() || super.onSupportNavigateUp()
 }
